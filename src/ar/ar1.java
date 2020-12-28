@@ -29,9 +29,9 @@ public class ar1 {
 	@Test
 	public void auto1() throws InterruptedException {
 		denglu();
-		chuangjian();
-//		shanchu();
-		yanzheng();
+//		chuangjian();
+//		yanzheng();
+		shanchu();
 	}
 
 	public void denglu(){
@@ -90,24 +90,30 @@ public class ar1 {
 		Thread.sleep(2000);
 	}
 
-	public void shanchu(){
+	public void shanchu() throws InterruptedException {
 		WebElement s= driver.findElement(By.xpath("//*[@id=\"root\"]/div/section/section/section/div/main/div/div[1]/div/div/div[1]/span[2]/button[2]"));
 		s.click();
-//      获取当前弹窗
-//		WebElement s2= (WebElement) driver.switchTo().alert();
-		WebElement s2=driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/button"));
-//		driver.switchTo().alert().accept();
+		Thread.sleep(2000);
+//		通过移动鼠标坐标到删除应用按钮，这里的 (xOffset, yOffset) 是以元素 toElement 的左上角为 (0,0) 开始的 (x, y) 坐标轴。
+		Actions action = new Actions(driver);
+		action.moveToElement(s,0,20);
+//		以鼠标当前位置（即s）中心开始移动到 (xOffset, yOffset) 坐标轴
+		Thread.sleep(500);
+		action.moveByOffset(0,20);
+		Thread.sleep(500);
+		action.moveByOffset(0,20);
+		Thread.sleep(500);
+		action.click();
+		action.release().perform();
+//		点击最终删除
+		WebElement s2= driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div/div[2]/button[2]"));
 		s2.click();
-//		Alert alert=driver.switchTo().alert();
-//		alert.accept();
-//		driver.switchTo().defaultContent();
-//		driver.switchTo().frame(driver.findElement(By.xpath("/html/body/div[4]/div/div/div/div[2]/div/div/button")));
 
 	}
 
 	public void yanzheng(){
 		WebElement y= driver.findElement(By.xpath("//*[@id=\"root\"]/div/section/section/section/div/main/div/div[1]/div/div/div[1]/span[1]/div/div/div[1]"));
-		Assert.assertEquals(y.getText(),"自动化应用2");
+		Assert.assertEquals(y.getText(),"自动化应用");
 	}
 
 	@AfterClass(alwaysRun = true)
