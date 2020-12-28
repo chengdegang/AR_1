@@ -106,14 +106,24 @@ public class ar1 {
 		action.click();
 		action.release().perform();
 //		点击最终删除
+		Thread.sleep(500);
 		WebElement s2= driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div/div[2]/button[2]"));
 		s2.click();
 
 	}
 
-	public void yanzheng(){
+	public void yanzheng() throws InterruptedException {
 		WebElement y= driver.findElement(By.xpath("//*[@id=\"root\"]/div/section/section/section/div/main/div/div[1]/div/div/div[1]/span[1]/div/div/div[1]"));
 		Assert.assertEquals(y.getText(),"自动化应用");
+//		刷新页面
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		driver.quit();
 	}
 
 	@AfterClass(alwaysRun = true)
