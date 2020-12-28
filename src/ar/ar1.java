@@ -29,8 +29,8 @@ public class ar1 {
 	@Test
 	public void auto1() throws InterruptedException {
 		denglu();
-//		chuangjian();
-//		yanzheng();
+		chuangjian();
+		yanzheng();
 		shanchu();
 	}
 
