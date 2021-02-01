@@ -2,6 +2,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.*;
@@ -67,7 +68,9 @@ public class ar1 {
 		y3.sendKeys("自动化应用");
 //		上传应用图标,定位到inut的type="file"
 		WebElement s = driver.findElement(By.xpath("//*[@id=\"root\"]/div/section/section/section/div/main/div/div/div[2]/form/div[3]/div[2]/div/span/div[1]/span/div[2]/span/input"));
-		s.sendKeys("/Users/jackrechard/Desktop/auto.png");
+//		String s_="src/main/resources/auto.png";
+		InputStream path=ar1.class.getClassLoader().getResourceAsStream("auto.png");
+		s.sendKeys((CharSequence) path);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 //		输入sdk的bundle等
 		WebElement i= driver.findElement(By.id("create-apply_iosFBundleId"));
@@ -109,7 +112,6 @@ public class ar1 {
 		Thread.sleep(500);
 		WebElement s2= driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div/div[2]/button[2]"));
 		s2.click();
-
 	}
 
 	public void yanzheng() throws InterruptedException {
@@ -118,12 +120,6 @@ public class ar1 {
 //		刷新页面
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		driver.quit();
 	}
 
 	@AfterClass(alwaysRun = true)
